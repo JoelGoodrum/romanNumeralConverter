@@ -1,7 +1,7 @@
 function convertToRoman(num) {
   
   const romanNumbs = [["I","II","III","IV","V","VI","VII","VIII","IX"],
-                      ["X","XX","XXX","XL","L","LXX","LXXX","XC"],
+                      ["X","XX","XXX","XL","L","LX","LXX","LXXX","XC"],
                       ["C","CC","CCC","CD","D","DC","DCC","DCCC","CM"],
                       ["M", "MM", "MMM"]];
                     
@@ -16,16 +16,16 @@ function convertToRoman(num) {
     }
   }
 
-  for(let i = decimalCounter - 1; i > -1; i--) {
-    let tempNum = (num % 10) - 1;
-    if(tempNum > 0) {
-      romanResult.push(romanNumbs[i][tempNum]);
-    }
-    num = Math.floor(num / 10);
+  //input number and decimal location, output string from array romanNumbs
+  for(let i = 0; i < decimalCounter; i++) {
+    romanResult.unshift(romanNumbs[i][num%10 -1]);
+    num = Math.floor(num/10);
   }
 
-  return romanResult;
+  //concatinate string from array.
+  let newArr = romanResult.filter(Boolean);
+  return newArr.join('');
 
 }
 
-convertToRoman(15);
+convertToRoman(955);
